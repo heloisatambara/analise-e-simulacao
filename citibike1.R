@@ -25,10 +25,10 @@ tempo_de_uso3 = data.frame(tempo3)
 tempo_de_uso4 = data.frame(tempo4)
 
 
-#### regiões ####
+#### regiÃµes ####
 summary(dados$start_lat) 
-summary(dados$start_lng) # variação de 0,14 na longitude
-summary(dados$end_lat)# variação de 0,21 na latitude
+summary(dados$start_lng) # variaÃ§Ã£o de 0,14 na longitude
+summary(dados$end_lat)# variaÃ§Ã£o de 0,21 na latitude
 summary(dados$end_lng)
 
 # brooklin: lat < 40.725
@@ -41,8 +41,8 @@ manend = dados[dados$end_lat > 40.725,]
 
 plot(table(manend$start_lat))
 
-# pela diferença nos graficos de brk, nota-se um movimento de saida do norte e ida para o sul
-# o movimento contrário em manhattan
+# pela diferenÃ§a nos graficos de brk, nota-se um movimento de saida do norte e ida para o sul
+# o movimento contrÃ¡rio em manhattan
 
 
 #### periodo ####
@@ -61,14 +61,14 @@ summary(tempo_de_uso)
 summary(strptime(format(dados$started_at, '%H:%M:%S'), '%H:%M:%S'))
 
 
-plot(table(dados$start_lat), ylab = 'frequência', xlab = 'latitude')
-plot(table(dados$start_lng), ylab = 'frequência', xlab = 'longitude')
-plot(table(dados$end_lat), ylab = 'frequência', xlab = 'latitude')
-plot(table(dados$end_lng), ylab = 'frequência', xlab = 'longitude')
+plot(table(dados$start_lat), ylab = 'frequÃªncia', xlab = 'latitude')
+plot(table(dados$start_lng), ylab = 'frequÃªncia', xlab = 'longitude')
+plot(table(dados$end_lat), ylab = 'frequÃªncia', xlab = 'latitude')
+plot(table(dados$end_lng), ylab = 'frequÃªncia', xlab = 'longitude')
 
 # freq tempo de uso
 
-plot(table(as.numeric(strptime(format(dados$started_at, '%H:%M:%S'), '%H:%M:%S'))), xlab = '00:00 - 23h59', ylab = 'frequência', xaxt = "n", yaxt = "n")
+plot(table(as.numeric(strptime(format(dados$started_at, '%H:%M:%S'), '%H:%M:%S'))), xlab = '00:00 - 23h59', ylab = 'frequÃªncia', xaxt = "n", yaxt = "n")
 
 #### bivariadas ####
 ## membro x periodo
