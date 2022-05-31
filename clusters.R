@@ -42,7 +42,7 @@ df3 = df[df$start.station.id %!in% stations & df$end.station.id %!in% stations ,
 # c.a
 mostFreqStart = names(sort(table(df3$start.station.id), decreasing=T)[1])
 df2 = df3[df3$start.station.id == mostFreqStart, c('start.station.id', 'end.station.id')]
-mostFreqEnd = names(sort(table(df2$end.station.id), decreasing=T)[1:10]) # aqui peguei 10 pois a mostFreqStart est· em mostFreqEnd
+mostFreqEnd = names(sort(table(df2$end.station.id), decreasing=T)[1:10]) # aqui peguei 10 pois a mostFreqStart est√° em mostFreqEnd
 stations = sort(c(mostFreqEnd)) # somente o mostFreqEnd pois contem mosFreqStart
 df2 = df3[df3$start.station.id %in% stations, c('start.station.id', 'end.station.id')]
 df2 = df2[df2$end.station.id %in% stations,]
@@ -70,21 +70,5 @@ rownames(cluster5) = stations
 cluster5
 
 # quantos clusters tem que fazer?
-
-#### might use this ####
-
-
-
-# pegar pares igual na P1
-transitions = c(paste(as.character(df3$start.station.id),'to', as.character(df3$end.station.id),sep=" "))
-summary(as.factor(transitions))
-substr(transitions[1], 1, 3)
-trans.matrix <- function(X, prob=T)
-{
-  tt <- table( c(X[,-ncol(X)]), c(X[,-1]) )
-  if(prob) tt <- tt / rowSums(tt)
-  tt
-}
-library('markovchain')
 
 cbind()
