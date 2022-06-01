@@ -51,29 +51,13 @@ df2 = df3[df3$start.station.id %in% stations,]
 df2 = df2[df2$end.station.id %in% stations,]
 long2 = unique(df2$start.station.longitude)
 lat2 = unique(df2$start.station.latitude) 
+
 # c.b
 cluster2 = matrix(prop.table(table(df2$start.station.id, df2$end.station.id)), nrow = 10)
 colnames(cluster2) = stations
 rownames(cluster2) = stations
 cluster2
 
-#### c.c mais clusters ####
-df3 = df3[df3$start.station.id %!in% stations & df3$end.station.id %!in% stations,]
-# rodar linha 57 e c.a a cada novo cluster
-cluster3 = matrix(prop.table(table(df2$start.station.id, df2$end.station.id)), nrow = 10)
-colnames(cluster3) = stations
-rownames(cluster3) = stations
-cluster3
-
-cluster4 = matrix(prop.table(table(df2$start.station.id, df2$end.station.id)), nrow = 10)
-colnames(cluster4) = stations
-rownames(cluster4) = stations
-cluster4
-
-cluster5 = matrix(prop.table(table(df2$start.station.id, df2$end.station.id)), nrow = 10)
-colnames(cluster5) = stations
-rownames(cluster5) = stations
-cluster5
 
 # quantos clusters tem que fazer?
 
