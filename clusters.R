@@ -34,8 +34,6 @@ cluster1
 
 
 #### exercicio c) ####
-# quantidade de estacoes
-length(unique(df$start.station.id))
 
 # retirar ocorrencias diferentes das stations
 `%!in%` <- Negate(`%in%`)
@@ -59,16 +57,11 @@ rownames(cluster2) = stations
 cluster2
 
 
-# quantos clusters tem que fazer?
-
-
 #### exercicio d) ####
 library(mapview)
-
-# maybe get unique long and lat
-
 FirstCluster = data.frame(longitude =long1, latitude = lat1, cluster = 1)
 SecondCluster = data.frame(longitude = long2, latitude = lat2, cluster = 2)
 clusters = rbind(FirstCluster, SecondCluster)
 mapview(clusters, xcol = "longitude", ycol = "latitude", grid = FALSE, crs = 4269, zcol = 'cluster')
-  
+
+
