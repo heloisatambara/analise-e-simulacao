@@ -79,38 +79,38 @@ mapview(clusters, xcol = "longitude", ycol = "latitude", grid = FALSE, crs = 426
 
 #### exercicio e) ####
 # how many stations
-length(unique(df$start.station.id))
+aux = length(unique(df$start.station.id))
 
 # rodar esse entre cada stations e cluster
 df2 = df[df$start.station.id %in% stations,]
 df2 = df2[df2$end.station.id %in% stations,]
 long1 = unique(df2$start.station.longitude)
 lat1 = unique(df2$start.station.latitude)
-cluster1 = matrix(prop.table(table(df2$start.station.id, df2$end.station.id)), nrow = 10)
+cluster1 = matrix(prop.table(table(df2$start.station.id, df2$end.station.id)), nrow = length(stations))
 colnames(cluster1) = stations
 rownames(cluster1) = stations
 cluster1
 
 
 #
-stations = names(sort(table(df0$start.station.id), decreasing=T)[1:153])
+stations = names(sort(table(df$start.station.id), decreasing=T)[1:153])
 FirstCluster = data.frame(longitude =long1, latitude = lat1, cluster = 1)
 
-stations = names(sort(table(df0$start.station.id), decreasing=T)[153:306])
+stations = names(sort(table(df$start.station.id), decreasing=T)[153:306])
 SecondCluster = data.frame(longitude =long1, latitude = lat1, cluster = 2)
 
 
-stations = names(sort(table(df0$start.station.id), decreasing=T)[306:459])
+stations = names(sort(table(df$start.station.id), decreasing=T)[306:459])
 ThirdCluster = data.frame(longitude =long1, latitude = lat1, cluster = 3)
 
 
-stations = names(sort(table(df0$start.station.id), decreasing=T)[459:612])
+stations = names(sort(table(df$start.station.id), decreasing=T)[459:612])
 FourthCluster = data.frame(longitude =long1, latitude = lat1, cluster = 4)
 
 
 
-stations = names(sort(table(df0$start.station.id), decreasing=T)[612:765])
-FifthCluster = data.frame(longitude =long1, latitude = lat1, cluster = 5)
+stations = names(sort(table(df$start.station.id), decreasing=T)[612:aux])
+FifthCluster = data.frame(longitude = df2$start.station.longitude, latitude = df2$start.station.latitude, cluster = 5)
 
 
 clusters = rbind(FirstCluster, SecondCluster, ThirdCluster, FourthCluster, FifthCluster)
