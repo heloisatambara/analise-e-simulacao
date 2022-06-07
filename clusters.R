@@ -37,7 +37,7 @@ lat1 = unique(df2$start.station.latitude)
 #### exercicio b) ####
 
 # cria a matriz de transicao
-cluster1 = matrix(prop.table(table(df2$start.station.id, df2$end.station.id)), nrow = 10)
+cluster1 = matrix(prop.table(table(df2$start.station.id, df2$end.station.id), 1), nrow = 10)
 colnames(cluster1) = stations
 rownames(cluster1) = stations
 cluster1
@@ -61,7 +61,7 @@ long2 = unique(df2$start.station.longitude)
 lat2 = unique(df2$start.station.latitude) 
 
 # c.b
-cluster2 = matrix(prop.table(table(df2$start.station.id, df2$end.station.id)), nrow = 10)
+cluster2 = matrix(prop.table(table(df2$start.station.id, df2$end.station.id), 1), nrow = 10)
 colnames(cluster2) = stations
 rownames(cluster2) = stations
 cluster2
@@ -86,7 +86,7 @@ df2 = df[df$start.station.id %in% stations,]
 df2 = df2[df2$end.station.id %in% stations,]
 long1 = unique(df2$start.station.longitude)
 lat1 = unique(df2$start.station.latitude)
-cluster1 = matrix(prop.table(table(df2$start.station.id, df2$end.station.id)), nrow = length(stations))
+cluster1 = matrix(prop.table(table(df2$start.station.id, df2$end.station.id), 1), nrow = length(stations))
 colnames(cluster1) = stations
 rownames(cluster1) = stations
 cluster1
