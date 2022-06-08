@@ -115,9 +115,3 @@ FifthCluster = data.frame(longitude = df2$start.station.longitude, latitude = df
 
 clusters = rbind(FirstCluster, SecondCluster, ThirdCluster, FourthCluster, FifthCluster)
 mapview(clusters, xcol = "longitude", ycol = "latitude", grid = FALSE, crs = 4269, zcol = 'cluster')
-
-
-
-
-#### might use this ####
-
