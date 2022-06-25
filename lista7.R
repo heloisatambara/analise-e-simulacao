@@ -5,35 +5,33 @@
 
 #### Exercicio 1 ####
 
-# Formula
-P = c(0,0,0,0)
-for (i in 1:4) {
-  P[i] = (1 - (q/p)^X[i])/(1-(q/p)^50)
-}
-plot(c(1,2,3,4),P )
-
 # a.
 ## Parametros iniciais
 X = c(10, 20, 30, 40)
 p = 18/38
 q = 1-p
 
+
+# Formula
+P = c(0,0,0,0)
+for (i in 1:4) {
+  P[i] = (1 - (q/p)^X[i])/(1-(q/p)^50)
+}
+
 ## Random walk
-x = X[1]
+x = X[4]
 soma = c(0,0,0,0)
-soma2 = 0
 bool = 1
 for (i in 1:4){
   for (j in 1:1000) {
     x = X[i]
     bool = 1
     while (bool) {
-      result = sample(c(-1,1), 1, replace = TRUE, prob = c(p, q))
+      prob = runif(1,0,1)
+      if (prob <= p) {result = 1}
+      else {result = -1}
       x = x + result
-      if (x==0) {
-        soma2 = soma2 + 1 # para conferir
-        bool = 0
-      } 
+      if (x==0) { bool = 0 } 
       if (x==50) {
         soma[i] = soma[i] + 1
         bool = 0
@@ -42,26 +40,51 @@ for (i in 1:4){
   }
 }
 soma = soma/1000
-i # conferir se chegou em 1000
-plot(c(1,2,3,4), soma)
+plot(c(10,20,30,40), soma, type = "n")
+lines(c(10,20,30,40), P, col = "Red")
+lines(c(10,20,30,40), soma, col = "Blue")
+P
+soma
 # b
 # rodar tudo de novo com
 p=1/2
+P = c(0,0,0,0)
+for (i in 1:4) {
+  P[i] = p*X[i]/25
+}
 
 #### Exercicio 2 ####
 # a
 N = c(10, 20, 30, 40, 50, 60, 70, 80, 90, 100)
-eventos = 0
-tempo = 0
-for (n in N) {
-  x = dexp(1:n,1)
-  a = runif(1000,x)
-  tempo = tempo + T
-  eventos = eventos + 1
-} 
-dpois(x, 1)
+for (n in N){
+  for (i in 1:1000) {
+    x = c()
+    tempo = 0 
+    count = 0
+    eventos = 0
+    while (eventos < n) {
+      count = count +1
+      Ti = rexp(1,1)
+      tempo = tempo + Ti
+      eventos = eventos + 1
+      x[count] = tempo
+    }
+  }
+  print(quantile(x, c(.05, .95))) # quantos segundos levaram até 5% e até 95% dos eventos
+}
 
-plot(c(1:10),x)
+
+x1<- dpois(1:10,1)
+a<- runif(1000, x1)
+quantile(a, probs= c(0.05,0.95))
+
+
+library(invgamma)
+
+for (n in N){
+  vetor = rinvgamma(n, 1)
+  print(quantile(vetor, c(.05, .95))) # quantos segundos levaram até 5% e até 95% dos eventos
+}
 
 
 # b
@@ -91,10 +114,10 @@ for (i in 1:5) {
     eventos = eventos + 1
     x[count] = tempo
   }
-  y1 = x + 3 * sqrt(x)
-  y2 = x - 3 * sqrt(x)
+  y1 = x + 3 * sqrt(x) # ii
+  y2 = x - 3 * sqrt(x) # ii
   y = c(1:eventos)
-  lines(x,y1, col = color1[i])
-  lines(x,y2, col = color1[i])
+  lines(x,y1, col = color1[i]) # ii
+  lines(x,y2, col = color1[i]) # ii
   lines(x,y, col = color[i])
 }
