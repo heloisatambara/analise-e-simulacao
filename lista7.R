@@ -65,8 +65,19 @@ plot(c(1:10),x)
 
 
 # b
-## i
-color = c("Blue", "Red", "Pink", "Yellow", "Brown")
+## i e ii
+color1 = c(rgb(1,0,0,.5),
+          rgb(0,1,0,.5),
+          rgb(0,0,1,.5),
+          rgb(1,1,0,.5),
+          rgb(1,0,1,.5))
+
+color = c(rgb(1,0,0,1),
+           rgb(0,1,0,1),
+           rgb(0,0,1,1),
+           rgb(1,1,0,1),
+           rgb(1,0,1,1))
+
 plot(0,0, xlim=c(0,100), ylim=c(0,100),type="n")
 for (i in 1:5) {
   x = c()
@@ -80,8 +91,10 @@ for (i in 1:5) {
     eventos = eventos + 1
     x[count] = tempo
   }
-  y =c(1:eventos)
-  print("a")
+  y1 = x + 3 * sqrt(x)
+  y2 = x - 3 * sqrt(x)
+  y = c(1:eventos)
+  lines(x,y1, col = color1[i])
+  lines(x,y2, col = color1[i])
   lines(x,y, col = color[i])
 }
-
