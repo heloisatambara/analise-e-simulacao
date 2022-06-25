@@ -65,13 +65,23 @@ plot(c(1:10),x)
 
 
 # b
-tempo = 0 
-eventos = 0
+## i
+color = c("Blue", "Red", "Pink", "Yellow", "Brown")
+plot(0,0, xlim=c(0,100), ylim=c(0,100),type="n")
 for (i in 1:5) {
+  x = c()
+  tempo = 0 
+  count = 0
+  eventos = 0
   while (tempo < 100) {
-    T = rexp(1,1)
-    tempo = tempo + T
+    count = count + 1
+    Ti = rexp(1,1)
+    tempo = tempo + Ti
     eventos = eventos + 1
+    x[count] = tempo
   }
+  y =c(1:eventos)
+  print("a")
+  lines(x,y, col = color[i])
 }
-?runif
+
