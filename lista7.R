@@ -57,35 +57,29 @@ for (i in 1:4) {
 # a
 N = c(10, 20, 30, 40, 50, 60, 70, 80, 90, 100)
 for (n in N){
+  x = c()
+  count = 0
   for (i in 1:1000) {
-    x = c()
     tempo = 0 
-    count = 0
     eventos = 0
     while (eventos < n) {
-      count = count +1
       Ti = rexp(1,1)
       tempo = tempo + Ti
       eventos = eventos + 1
-      x[count] = tempo
     }
+    count = count +1
+    x[count] = tempo
+    
   }
-  print(quantile(x, c(.05, .95))) # quantos segundos levaram até 5% e até 95% dos eventos
+  print(quantile(x, c(.05, .95))) 
 }
 
-
-x1<- dpois(1:10,1)
-a<- runif(1000, x1)
-quantile(a, probs= c(0.05,0.95))
-
-
-library(invgamma)
-
+n = 10
 for (n in N){
-  vetor = rinvgamma(n, 1)
-  print(quantile(vetor, c(.05, .95))) # quantos segundos levaram até 5% e até 95% dos eventos
+  vetor = pnorminv(.05, n, sqrt(n))
+  print(vetor)
 }
-
+?dnorm
 
 # b
 ## i e ii
